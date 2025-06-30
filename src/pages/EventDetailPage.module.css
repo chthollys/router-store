@@ -1,0 +1,27 @@
+.event-detail-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.event-detail-container ul {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.event-detail-container li a,
+.event-detail-container li button {
+  text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  background-color: none;
+}
+
+.event-detail-container li a:hover,
+.event-detail-container li button:hover {
+  cursor: pointer;
+}

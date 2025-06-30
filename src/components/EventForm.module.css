@@ -1,0 +1,29 @@
+.event-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: auto;
+  gap: 1rem;
+}
+
+.event-form input {
+  padding: 0.3rem;
+}
+
+.event-form button {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  padding: 1rem 1.3rem;
+  border-radius: 0.3rem;
+  width: max-content;
+  margin: 20px auto 0;
+}
+
+.event-form button:hover,
+.event-form button:active {
+  background-color: white;
+  color: #242424;
+}
