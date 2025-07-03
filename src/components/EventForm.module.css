@@ -19,11 +19,17 @@
   padding: 1rem 1.3rem;
   border-radius: 0.3rem;
   width: max-content;
-  margin: 20px auto 0;
 }
 
 .event-form button:hover,
 .event-form button:active {
   background-color: white;
   color: #242424;
+}
+
+.actions-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
 }

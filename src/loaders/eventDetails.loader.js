@@ -1,5 +1,6 @@
-export const loaderEvent = async ({ request, params }) => {
-  const id = params.id;
+import { loader } from "./events.loader";
+
+const loaderEvent = async (id) => {
   const response = await fetch("http://localhost:8080/events/" + id);
   if (!response.ok) {
     throw new Response(
@@ -11,3 +12,11 @@ export const loaderEvent = async ({ request, params }) => {
     return resData.event;
   }
 };
+
+export async function loaderEventDetail({ request, params }) {
+  const id = params.id;
+  return {
+    event: await loaderEvent(id),
+    events: loader(),
+  };
+}

@@ -1,40 +1,32 @@
-import { Link, useRouteLoaderData, useSubmit } from "react-router";
+import { useRouteLoaderData, Await } from "react-router";
+import { Suspense } from "react";
 
-import classes from "./EventDetailPage.module.css";
+import EventItem from "../components/EventItem";
+import EventsList from "../components/EventsList";
 
 function EventDetailPage() {
-  const submit = useSubmit();
-  const { event } = useRouteLoaderData("event-detail");
-
-  const handleDeleteEvent = () => {
-    const proceed = window.confirm("Are you sure want to delete");
-
-    if (proceed) {
-      submit(null, { method: "DELETE" });
-    }
-  };
+  const { event, events } = useRouteLoaderData("event-detail");
 
   return (
-    <div className={classes["event-detail-container"]}>
-      <h1>{event.title}</h1>
-      <p>Event id: {event.id}</p>
-      <img src={event.image} alt="Event image" />
-      <p>Date: {event.date}</p>
-      <p>{event.description}</p>
-      <ul>
-        <li>
-          <Link to="edit">Edit </Link>
-        </li>
-        <li>
-          <Link relative="path" to="..">
-            Back
-          </Link>
-        </li>
-        <li>
-          <button onClick={handleDeleteEvent}>Delete</button>
-        </li>
-      </ul>
-    </div>
+    <>
+      <Suspense
+        fallback={
+          <p style={{ textAlign: "center" }}>Loading Event Detail...</p>
+        }
+      >
+        <Await resolve={event}>
+          {(loadedEvent) => <EventItem event={loadedEvent} />}
+        </Await>
+      </Suspense>
+
+      <Suspense
+        fallback={<p style={{ textAlign: "center" }}>Loading Events</p>}
+      >
+        <Await resolve={events}>
+          {(loadedEvents) => <EventsList events={loadedEvents} />}
+        </Await>
+      </Suspense>
+    </>
   );
 }
 

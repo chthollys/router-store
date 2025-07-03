@@ -10,13 +10,17 @@ export const newEventAction = async ({ request, params }) => {
     description: formData.get("description"),
   };
 
-  const response = await fetch("http://localhost:8080/events/", {
+  const response = await fetch("http://localhost:8080/events", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(requestBody),
   });
+
+  if (response.status === 422) {
+    return response;
+  }
 
   if (!response.ok) {
     throw new Response(

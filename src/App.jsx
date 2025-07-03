@@ -16,6 +16,9 @@ import { loaderEvents } from "./loaders/events.loader";
 import { loaderEvent } from "./loaders/event.loader";
 import { newEventAction } from "./actions/newEvent.action";
 import { deleteEventAction } from "./actions/deleteEvent.action";
+import NewsletterPage from "./components/Newsletter";
+import { newsLetterAction } from "./actions/newsLetter.action";
+import { loaderEventDetail } from "./loaders/eventDetails.loader";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +43,7 @@ const router = createBrowserRouter([
           {
             path: ":id",
             id: "event-detail",
-            loader: loaderEvent,
+            loader: loaderEventDetail,
             children: [
               {
                 index: true,
@@ -59,6 +62,11 @@ const router = createBrowserRouter([
             action: newEventAction,
           },
         ],
+      },
+      {
+        path: "newsletter",
+        element: <NewsletterPage />,
+        action: newsLetterAction,
       },
     ],
   },

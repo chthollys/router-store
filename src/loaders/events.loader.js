@@ -1,4 +1,4 @@
-export const loaderEvents = async () => {
+export const loader = async () => {
   const response = await fetch("http://localhost:8080/events/");
   if (!response.ok) {
     // error handling
@@ -6,6 +6,13 @@ export const loaderEvents = async () => {
       status: 500,
     });
   } else {
-    return response;
+    const resData = await response.json();
+    return resData.events;
   }
+};
+
+export const loaderEvents = async () => {
+  return {
+    events: loader(),
+  };
 };
